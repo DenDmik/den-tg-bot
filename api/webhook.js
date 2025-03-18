@@ -57,11 +57,13 @@ bot.on('callback_query', async (msg) => {
     }
 });
 
-module.exports = (req, res) => {
-    if (req.method === 'POST') {
-        bot.handleUpdate(req.body);
-        res.status(200).send('Webhook received');
-    } else {
-        res.status(405).send('Method not allowed');
+module.exports = async (req, res) => {
+    try {
+      setupBot();
+      await bot.processUpdate(req.body);
+      res.status(200).send('OK');
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
     }
-};
+  };
