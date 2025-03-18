@@ -1,6 +1,6 @@
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const { optionButtons, againOptions } = require('./options');
+const { optionButtons, againOptions } = require('../options');
 
 const token = process.env.TELEGRAM_TOKEN;
 const webAppUrl = 'https://next-deploy-dun.vercel.app/';
