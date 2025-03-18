@@ -6,7 +6,7 @@ const token = process.env.TELEGRAM_TOKEN;
 const webAppUrl = 'https://next-deploy-dun.vercel.app/';
 const bot = new TelegramBot(token);
 const chats = {};
-
+const setupBot = ()=>{
 const startGame = async (chatId) => {
     await bot.sendMessage(chatId, 'Я загадываю число от 0 до 9');
     const randomNumber = Math.floor(Math.random() * 10);
@@ -56,7 +56,7 @@ bot.on('callback_query', async (msg) => {
         return await bot.sendMessage(chatId, `Вы нажали кнопку ${data}, Вы не угадали цифру ${chats[chatId]}`, againOptions);
     }
 });
-
+}
 module.exports = async (req, res) => {
     try {
       setupBot();
