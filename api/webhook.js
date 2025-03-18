@@ -24,7 +24,7 @@ bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
 
     if (msg.text === '/start') {
-        // await bot.sendSticker(chatId, 'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
+        await bot.sendSticker(chatId, 'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
         return bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
             reply_markup: {
                 inline_keyboard: [
