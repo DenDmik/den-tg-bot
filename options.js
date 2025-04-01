@@ -1,4 +1,4 @@
-module.exports={
+export default {
      optionButtons : {
         reply_markup:{
             inline_keyboard:[
@@ -9,7 +9,7 @@ module.exports={
             ] 
         }
     },
-     againOptions:{
+  againOptions:{
         reply_markup:{
             inline_keyboard:[
                 [{text:'Играть еще', callback_data:'/again'}],

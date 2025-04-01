@@ -1,14 +1,19 @@
+import 'dotenv/config'
+import TelegramBot from 'node-telegram-bot-api';
+import options from './options.js';
+const { optionButtons, againOptions } = options;
 
-const TelegramBot = require('node-telegram-bot-api');
-const { optionButtons,againOptions} = require('./options')
+const token = process.env.TOKEN;
+const webAppUrl = process.env.WEB_APP
+const url = process.env.URL_NGROK
+const port = process.env.PORT
 
-// replace the value below with the Telegram token you receive from @BotFather
-const token = '6615373653:AAFReaits7vEsmkpzxFle-ipbLAoHk_-ots';
-const webAppUrl = 'https://next-deploy-dun.vercel.app/'
-
-// Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
-
+const bot = new TelegramBot(token,{
+    webHook:{
+        port:port
+    }
+});
+ bot.setWebHook(`${url}/${token}`)
 const chats={}
 
 const start = async()=>{
