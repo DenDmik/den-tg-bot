@@ -11,7 +11,7 @@ const VERCEL_URL = `${process.env.VERCEL_URL}`
 const bot = new TelegramBot(token,{
     webHook:true
 });
- bot.setWebHook(`${VERCEL_URL}/api${token}`)
+ bot.setWebHook(`https://den-tg-bot.vercel.app/api${token}`)
 const chats={}
 
 const start = async()=>{
