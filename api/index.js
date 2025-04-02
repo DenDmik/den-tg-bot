@@ -13,7 +13,7 @@ const VERCEL_URL = `${process.env.VERCEL_URL}`
 const bot = new TelegramBot(token,{
     webHook:{port:3000}
 });
- bot.setWebHook(`https://den-tg-bot.vercel.app/api${token}`)
+ bot.setWebHook(`https://den-tg-bot.vercel.app/${token}`)
  
  const app = express();
 app.use(bodyParser.json());
