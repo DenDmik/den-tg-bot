@@ -1,20 +1,27 @@
 import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api';
 import options from './options.js';
-
+import express from 'express';
+import bodyParser from 'body-parser';
 const { optionButtons, againOptions } = options;
 
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
 const url = process.env.URL_NGROK
 const port = process.env.PORT
-
+const VERCEL_URL = `${process.env.VERCEL_URL}`
 const bot = new TelegramBot(token,{
-    webHook:{
-        port:port
-    }
+    webHook:true
 });
- bot.setWebHook(`${url}/${token}`)
+ bot.setWebHook(`https://den-tg-bot.vercel.app/${token}`)
+ 
+ const app = express();
+app.use(bodyParser.json());
+
+app.post(`/bot${token}`, (req, res) => {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);})
+
 const chats={}
 
 const start = async()=>{
@@ -105,3 +112,6 @@ const start = async()=>{
     ///////////////
 }  
 start()
+app.listen(port, () => {
+    console.log(`Сервер запущен на порту ${port}`);
+});
