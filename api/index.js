@@ -7,13 +7,11 @@ const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
 const url = process.env.URL_NGROK
 const port = process.env.PORT
-
+const VERCEL_URL = `${process.env.VERCEL_URL}`
 const bot = new TelegramBot(token,{
-    webHook:{
-        port:port
-    }
+    webHook:true
 });
- bot.setWebHook(`${url}/api${token}`)
+ bot.setWebHook(`${VERCEL_URL}/api${token}`)
 const chats={}
 
 const start = async()=>{
