@@ -15,7 +15,7 @@ const bot = new TelegramBot(token,{
 
 
  const start = async()=>{
-    bot.setMyCommands([
+   await bot.setMyCommands([
         {command: '/start', description: 'Начальное приветствие'},
         {command: '/info', description: 'Получить информацию о пользователе'},
         {command: '/music', description: 'Музыка'},
@@ -36,6 +36,16 @@ const bot = new TelegramBot(token,{
     if(msg.text === '/music'){
      await  bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
     }
-    if(msg.text ==='/start'){bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')}
     
 })
+
+bot.onText(/\/start (.+)/, function (msg, match) {
+    // 'msg' is the received Message from Telegram
+    // 'match' is the result of executing the regexp above on the text content
+    // of the message
+  
+    var chatId = msg.chat.id;
+  
+    // send back the matched "whatever" to the chat
+    bot.sendMessage(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp' );
+  });
