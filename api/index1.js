@@ -25,7 +25,7 @@ const bot = new TelegramBot(token,{
     
       
     if(msg.text === '/info') {
-     return bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
-    } 
+      bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
+    } else{return bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')}
     
 })
