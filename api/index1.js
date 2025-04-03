@@ -1,9 +1,5 @@
 import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api';
-import options from '../options.js';
-
-const { optionButtons, againOptions } = options;
-
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
 const url = process.env.API_URL;
@@ -25,7 +21,7 @@ const bot = new TelegramBot(token,{
     bot.on('message',async (msg) => {
         console.log(msg.from.username)
         const text = msg.text
-      const chatId = msg.chat.id;})
+      const chatId = msg.chat.id;
     
       
     if(text === '/start'){
@@ -41,4 +37,4 @@ const bot = new TelegramBot(token,{
      return bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
     } 
     
-
+})
