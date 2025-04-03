@@ -1,12 +1,12 @@
 import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api';
-import options from './options.js';
+import options from '../options.js';
 
 const { optionButtons, againOptions } = options;
 
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
-const url = process.env.URL_NGROK
+const url = process.env.API_URL;
 const port = process.env.PORT
 
 const bot = new TelegramBot(token,{
@@ -14,7 +14,8 @@ const bot = new TelegramBot(token,{
         port:port
     }
 });
- bot.setWebHook(`${url}/${token}`)
+
+ bot.setWebHook(`${url}/bot${token}`)
 const chats={}
 
 const start = async()=>{

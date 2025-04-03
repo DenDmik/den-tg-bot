@@ -11,16 +11,17 @@ const url = process.env.URL_NGROK
 const port = process.env.PORT
 const VERCEL_URL = `${process.env.VERCEL_URL}`
 const bot = new TelegramBot(token,{
-    webHook:true
+    webHook:{port:3000}
 });
- bot.setWebHook(`https://den-tg-bot.vercel.app/`)
+ bot.setWebHook(`${url}/bot${token}`)
  
- const app = express();
-app.use(bodyParser.json());
+//  const app = express();
+// ;
+// app.use(bodyParser.json())
 
-app.post(`/`, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);})
+// app.post(`/bot`, (req, res) => {
+//     bot.processUpdate(req.body);
+//     res.sendStatus(200);})
 
 const chats={}
 
@@ -112,6 +113,6 @@ const start = async()=>{
     ///////////////
 }  
 start()
-app.listen(port, () => {
-    console.log(`Сервер запущен на порту ${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Сервер запущен на порту ${port}`);
+// });
