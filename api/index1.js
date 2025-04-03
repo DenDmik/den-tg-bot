@@ -24,16 +24,7 @@ const bot = new TelegramBot(token,{
       const chatId = msg.chat.id;
     
       
-    if(text === '/start'){
-        await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
-      return bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-        reply_markup: {
-            inline_keyboard: [
-                [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
-            ]
-        }
-    })
-    } if(msg.text === '/info') {
+    if(msg.text === '/info') {
      return bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
     } 
     
