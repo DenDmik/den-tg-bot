@@ -29,8 +29,10 @@ const bot = new TelegramBot(token,{
         const text = msg.text
       const chatId = msg.chat.id;
 
-     if(msg.text ==='/start'){bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')}
-})
+     if(msg.text ==='/start'){bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
+      
+     }
+
       
     if(msg.text === '/info') {
       bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
@@ -39,4 +41,4 @@ const bot = new TelegramBot(token,{
     if(msg.text === '/music'){
      await  bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
     }
-   
+   })
