@@ -32,7 +32,7 @@ const bot = new TelegramBot(token,{
 
      if(msg.text ==='/start'){
     await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
- await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+  bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
         reply_markup: {
             inline_keyboard: [
                 [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
@@ -45,6 +45,6 @@ const bot = new TelegramBot(token,{
     } else
      
    if(msg.text === '/music'){
-    bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
+   await bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
     } else  await bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
    })
