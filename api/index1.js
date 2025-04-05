@@ -30,8 +30,8 @@ const bot = new TelegramBot(token,{
       const chatId = msg.chat.id;
 
      if(msg.text ==='/start'){
-  bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
-  bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+ await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
+ await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
         reply_markup: {
             inline_keyboard: [
                 [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
