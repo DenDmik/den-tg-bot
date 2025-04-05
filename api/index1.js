@@ -23,7 +23,7 @@ const bot = new TelegramBot(token,{
     ])}
       
    start()
- if(bot.hasOpenWebHook) return (
+ 
     
     bot.on('message',async (msg) => {
         console.log(msg.from.username)
@@ -48,4 +48,3 @@ const bot = new TelegramBot(token,{
     bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
     } else return await bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
    })
-)
