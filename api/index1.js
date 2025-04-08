@@ -1,15 +1,26 @@
 import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api';
+import Koa from 'koa';
+import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser'
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
 const url = process.env.API_URL;
 const port = process.env.PORT
 
-const bot = new TelegramBot(token,{
-    webHook:{
-        port:port
-    }
-});
+const bot = new TelegramBot(token);
+ bot.setWebHook(`https://den-tg-bot.vercel.app/bot`)
+const app = new Koa()
+const router = new Router()
+router.post('/bot',(ctx)=>{
+    const{body}= ctx.request
+    bot.processUpdate(body)
+    ctx.status = 200
+}
+)
+app.use(bodyParser)
+app.use(router.routes())
+app.listen(port,()=>{`Server started at port ${port}`})
 
 //  bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`)
 
@@ -22,25 +33,28 @@ const bot = new TelegramBot(token,{
 //     ])}
       
 //    start()
+///////////////////////////////////////
+
+
 /////////////////////////////////////////////////////////////////
-const start = async () => {
-    try {
-        // Устанавливаем вебхук
-        await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`);
+// const start = async () => {
+//     try {
+//         // Устанавливаем вебхук
+//         await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`);
         
-        // Устанавливаем команды
-        await bot.setMyCommands([
-            {command: '/start', description: 'Начальное приветствие'},
-            {command: '/info', description: 'Получить информацию о пользователе'},
-            {command: '/music', description: 'Музыка'},
-        ]);
+//         // Устанавливаем команды
+//         await bot.setMyCommands([
+//             {command: '/start', description: 'Начальное приветствие'},
+//             {command: '/info', description: 'Получить информацию о пользователе'},
+//             {command: '/music', description: 'Музыка'},
+//         ]);
         
-        console.log('Bot successfully initialized');
-    } catch (error) {
-        console.error('Error during initialization:', error);
-    }
-}
- 
+//         console.log('Bot successfully initialized');
+//     } catch (error) {
+//         console.error('Error during initialization:', error);
+//     }
+// }
+//  start()
     ///////////////////////////////////////////////////////////
 //     bot.on('message',async (msg) => {
 //         console.log(msg.from.username)
@@ -184,4 +198,3 @@ bot.onText(/^(?!\/start$|\/info$|\/music$).*$/, async (msg) => {
         console.error('Error in unknown command handler:', error);
     }
 });
-start()
