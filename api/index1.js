@@ -1,26 +1,13 @@
 import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api';
-import Koa from 'koa';
-import Router from 'koa-router';
-import bodyParser from 'koa-bodyparser'
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEB_APP
 const url = process.env.API_URL;
 const port = process.env.PORT
 
-const bot = new TelegramBot(token);
- bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`)
-const app = new Koa()
-const router = new Router()
-router.post('/bot',(ctx)=>{
-    const{body}= ctx.request
-    bot.processUpdate(body)
-    ctx.status = 200
-}
-)
-app.use(bodyParser)
-app.use(router.routes())
-app.listen(port,()=>{`Server started at port ${port}`})
+const bot = new TelegramBot(token,{
+    webHook:{port:port}
+});
 
 //  bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`)
 
