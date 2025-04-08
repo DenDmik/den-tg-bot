@@ -63,9 +63,7 @@ app.use(express.json());
 
 // Initialize bot with webhook configuration
 const bot = new TelegramBot(token, {
-  webHook: {
-    port: port
-  }
+  webHook: true
 });
 
 // Commands configuration
