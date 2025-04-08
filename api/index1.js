@@ -24,29 +24,29 @@ const bot = new TelegramBot(token,{
    start()
  
     
-    bot.on('message',async (msg) => {
-        console.log(msg.from.username)
-        const text = msg.text
-      const chatId = msg.chat.id;
+//     bot.on('message',async (msg) => {
+//         console.log(msg.from.username)
+//         const text = msg.text
+//       const chatId = msg.chat.id;
 
-     if(msg.text ==='/start'){
- await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
- await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-        reply_markup: {
-            inline_keyboard: [
-                [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
-            ]
-        }
-    })
+//      if(msg.text ==='/start'){
+//  await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
+//  await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+//         reply_markup: {
+//             inline_keyboard: [
+//                 [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
+//             ]
+//         }
+//     })
 
-     } else if(msg.text === '/info') {
-     bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
-    } else
+//      } else if(msg.text === '/info') {
+//      bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
+//     } else
      
-   if(msg.text === '/music'){
-    bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
-    } else   bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
-   })
+//    if(msg.text === '/music'){
+//     bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
+//     } else   bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
+//    })
 ///////////////////////////////////////////////////
 // import 'dotenv/config';
 // import express from 'express';
@@ -91,40 +91,40 @@ const bot = new TelegramBot(token,{
 // }
 
 // // Message handler
-// bot.on('message', async (msg) => {
-//   try {
-//     const chatId = msg.chat.id;
-//     const text = msg.text;
-//     console.log(`Received message from ${msg.from.username}: ${text}`);
+bot.on('message', async (msg) => {
+  try {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+    console.log(`Received message from ${msg.from.username}: ${text}`);
 
-//     switch (text) {
-//       case '/start':
-//         await bot.sendSticker(chatId, 'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
-//         await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-//           reply_markup: {
-//             inline_keyboard: [
-//               [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
-//             ]
-//           }
-//         });
-//         break;
+    switch (text) {
+      case '/start':
+        await bot.sendSticker(chatId, 'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
+        await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+          reply_markup: {
+            inline_keyboard: [
+              [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
+            ]
+          }
+        });
+        break;
 
-//       case '/info':
-//         await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
-//         break;
+      case '/info':
+        await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
+        break;
 
-//       case '/music':
-//         await bot.sendAudio(chatId, 'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force');
-//         break;
+      case '/music':
+        await bot.sendAudio(chatId, 'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force');
+        break;
 
-//       default:
-//         await bot.sendMessage(chatId, 'неизвестная команда смотри в Menu');
-//     }
-//   } catch (error) {
-//     console.error('Error handling message:', error);
-//     await bot.sendMessage(msg.chat.id, 'Произошла ошибка при обработке команды');
-//   }
-// });
+      default:
+        await bot.sendMessage(chatId, 'неизвестная команда смотри в Menu');
+    }
+  } catch (error) {
+    console.error('Error handling message:', error);
+    await bot.sendMessage(msg.chat.id, 'Произошла ошибка при обработке команды');
+  }
+});
 
 // // Error handler
 // bot.on('error', (error) => {
