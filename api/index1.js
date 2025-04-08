@@ -9,7 +9,7 @@ const url = process.env.API_URL;
 const port = process.env.PORT
 
 const bot = new TelegramBot(token);
- bot.setWebHook(`https://den-tg-bot.vercel.app/bot`)
+ bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`)
 const app = new Koa()
 const router = new Router()
 router.post('/bot',(ctx)=>{
@@ -37,24 +37,24 @@ app.listen(port,()=>{`Server started at port ${port}`})
 
 
 /////////////////////////////////////////////////////////////////
-// const start = async () => {
-//     try {
-//         // Устанавливаем вебхук
-//         await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`);
+const start = async () => {
+    try {
+        // Устанавливаем вебхук
+        await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`);
         
-//         // Устанавливаем команды
-//         await bot.setMyCommands([
-//             {command: '/start', description: 'Начальное приветствие'},
-//             {command: '/info', description: 'Получить информацию о пользователе'},
-//             {command: '/music', description: 'Музыка'},
-//         ]);
+        // Устанавливаем команды
+        await bot.setMyCommands([
+            {command: '/start', description: 'Начальное приветствие'},
+            {command: '/info', description: 'Получить информацию о пользователе'},
+            {command: '/music', description: 'Музыка'},
+        ]);
         
-//         console.log('Bot successfully initialized');
-//     } catch (error) {
-//         console.error('Error during initialization:', error);
-//     }
-// }
-//  start()
+        console.log('Bot successfully initialized');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
+}
+ start()
     ///////////////////////////////////////////////////////////
 //     bot.on('message',async (msg) => {
 //         console.log(msg.from.username)
