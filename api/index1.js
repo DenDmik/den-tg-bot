@@ -93,17 +93,20 @@ bot.onText('/start', async (msg)=>{
               [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
             ]
           }
-    })
+    }) ; return null
 })
 bot.onText('/info', async (msg)=>{
     const chatId=msg.chat.id
     await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name}`)
+    return null
 })
 
 bot.onText('/music', async (msg)=>{
     await bot.sendAudio(msg.chat.id,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force' )
+    return null
 })
 bot.onText(/.+/, async (msg) => {
     const chatId = msg.chat.id
     await bot.sendMessage(chatId, 'Неизвестная команда')
+    return null
 })
