@@ -30,7 +30,9 @@ const bot = new TelegramBot(token,{
 const start = async () => {
     try {
         // Устанавливаем вебхук
-        await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`);
+        await bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`,{
+            drop_pending_updates: true
+        });
         
         // Устанавливаем команды
         await bot.setMyCommands([
