@@ -6,7 +6,10 @@ const url = process.env.API_URL;
 const port = process.env.PORT
 
 const bot = new TelegramBot(token,{
-    webHook:{port:port}
+    webHook:{
+        port:port,
+        
+    }
 });
 
 //  bot.setWebHook(`https://den-tg-bot.vercel.app/bot${token}`)
@@ -41,31 +44,33 @@ const start = async () => {
         console.error('Error during initialization:', error);
     }
 }
+const handleStart = async () =>{
+  await  bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
+  await  bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+        reply_markup: {
+            inline_keyboard: [
+                [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
+            ]
+        }
+    })
+}
  start()
     ///////////////////////////////////////////////////////////
-//     bot.on('message',async (msg) => {
-//         console.log(msg.from.username)
-//         const text = msg.text
-//       const chatId = msg.chat.id;
+    bot.on('message',async (msg) => {
+        console.log(msg.from.username)
+        const text = msg.text
+      const chatId = msg.chat.id;
 
-//      if(msg.text ==='/start'){
-//  await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
-//  await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-//         reply_markup: {
-//             inline_keyboard: [
-//                 [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
-//             ]
-//         }
-//     })
-
-//      } else if(msg.text === '/info') {
-//      bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
-//     } else
+     if(text ==='/start'){ 
+        handleStart()
+     } else if(text === '/info') {
+     bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
+    } else
      
-//    if(msg.text === '/music'){
-//     bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
-//     } else   bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
-//    })
+   if(text === '/music'){
+    bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
+    } else   bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
+   })
 ///////////////////////////////////////////////////
 // // Message handler
 // bot.on('message', async (msg) => {
@@ -130,58 +135,3 @@ const start = async () => {
 //     return null
 // })
 //////////////////////////////////////////
-bot.onText(/^\/start$/, async (msg) => {
-    try {
-        const chatId = msg.chat.id;
-        console.log(`Processing /start command for chat ${chatId}`);
-        
-        await bot.sendSticker(chatId, 'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
-        await bot.sendMessage(chatId, 'Заходи на наш сайт по кнопке ниже', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
-                ]
-            }
-        });
-    } catch (error) {
-        console.error('Error in /start handler:', error);
-        await bot.sendMessage(msg.chat.id, 'Произошла ошибка при обработке команды');
-    }
-});
-
-bot.onText(/^\/info$/, async (msg) => {
-    try {
-        const chatId = msg.chat.id;
-        console.log(`Processing /info command for chat ${chatId}`);
-        
-        await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name}`);
-    } catch (error) {
-        console.error('Error in /info handler:', error);
-        await bot.sendMessage(msg.chat.id, 'Произошла ошибка при обработке команды');
-    }
-});
-bot.onText(/^\/music$/, async (msg) => {
-    try {
-        const chatId = msg.chat.id;
-        console.log(`Processing /music command for chat ${chatId}`);
-        
-        await bot.sendAudio(chatId, 'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force');
-    } catch (error) {
-        console.error('Error in /music handler:', error);
-        await bot.sendMessage(msg.chat.id, 'Произошла ошибка при обработке команды');
-    }
-});
-
-// Обработчик для неизвестных команд - теперь исключает известные команды
-bot.onText(/^(?!\/start$|\/info$|\/music$).*$/, async (msg) => {
-    try {
-        const chatId = msg.chat.id;
-        console.log(`Received unknown command from chat ${chatId}: ${msg.text}`);
-        
-        if (msg.text.startsWith('/')) {
-            await bot.sendMessage(chatId, 'Неизвестная команда. Используйте меню для списка доступных команд.');
-        }
-    } catch (error) {
-        console.error('Error in unknown command handler:', error);
-    }
-});
