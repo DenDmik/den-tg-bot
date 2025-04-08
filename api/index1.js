@@ -46,9 +46,9 @@ const start = async () => {
         console.error('Error during initialization:', error);
     }
 }
-const handleStart = async (chatId,text) =>{
-  await  bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
-  await  bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+const handleStart =  (chatId,text) =>{
+   bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
+    bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
         reply_markup: {
             inline_keyboard: [
                 [{text: 'Перейти в Next-deploy project', web_app: {url: webAppUrl}}]
@@ -66,11 +66,11 @@ const handleStart = async (chatId,text) =>{
      if(text ==='/start'){ 
         handleStart(chatId,text)
      } else if(text === '/info') {
-     bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
+    await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
     } else
      
    if(text === '/music'){
-    bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
+   await bot.sendAudio(chatId,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force')
     } else   bot.sendMessage(chatId, 'неизвестная команда смотри в Menu')
    })
 ///////////////////////////////////////////////////
