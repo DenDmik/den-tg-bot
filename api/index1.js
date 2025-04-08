@@ -44,7 +44,7 @@ const start = async () => {
         console.error('Error during initialization:', error);
     }
 }
-const handleStart = async () =>{
+const handleStart = async (chatId,text) =>{
   await  bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp');
   await  bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
         reply_markup: {
@@ -62,7 +62,7 @@ const handleStart = async () =>{
       const chatId = msg.chat.id;
 
      if(text ==='/start'){ 
-        handleStart()
+        handleStart(chatId,text)
      } else if(text === '/info') {
      bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name} ${msg.from.last_name}`);
     } else
