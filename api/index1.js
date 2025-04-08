@@ -84,7 +84,7 @@ const bot = new TelegramBot(token,{
 //   }
 // });
 ///////////////////////////////////////////////////////////////////////
-bot.on('/start', async (msg)=>{ 
+bot.onText('/start', async (msg)=>{ 
     const chatId = msg.chat.id
     await bot.sendSticker(chatId,'https://tlgrm.eu/_/stickers/ea5/382/ea53826d-c192-376a-b766-e5abc535f1c9/1.webp')
     await bot.sendMessage(chatId,'Заходи на наш сайт по кнопке ниже',{
@@ -95,15 +95,15 @@ bot.on('/start', async (msg)=>{
           }
     })
 })
-bot.on('/info', async (msg)=>{
+bot.onText('/info', async (msg)=>{
     const chatId=msg.chat.id
     await bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name}`)
 })
 
-bot.on('/music', async (msg)=>{
+bot.onText('/music', async (msg)=>{
     await bot.sendAudio(msg.chat.id,'https://muz8.z3.fm/1/50/dskarlatti_-_sonata_b-moll__k27_l449_(zf.fm).mp3?download=force' )
 })
-bot.on(/.+/, async (msg) => {
+bot.onText(/.+/, async (msg) => {
     const chatId = msg.chat.id
     await bot.sendMessage(chatId, 'Неизвестная команда')
 })
